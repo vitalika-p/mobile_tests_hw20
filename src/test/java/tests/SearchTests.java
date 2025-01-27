@@ -4,11 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import screens.SearchScreen;
+import screens.SearchResultScreen;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import javax.management.Query;
-
-import static com.codeborne.selenide.Selenide.$;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SearchTests extends TestBase {
     screens.SearchScreen searchScreen = new SearchScreen();
@@ -27,7 +25,7 @@ public class SearchTests extends TestBase {
     @Test
     @Tag("android")
     @DisplayName("Открыть первый результат и проверить текст ошибки")
-    void clearSearchFieldTest() {
+    void verifyErrorTextTest() {
         searchScreen.openSearchPage();
         searchScreen.enterValidQuery("Pushkin");
         searchScreen.verifySearchFieldContainsText("Pushkin");
