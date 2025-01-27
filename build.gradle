@@ -30,16 +30,15 @@ allure {
 }
 
 dependencies {
-    testImplementation(
-            "org.aspectj:aspectjweaver:$aspectjWeaverVersion",
-            "com.codeborne:selenide:$selenideVersion",
-            "io.qameta.allure:allure-selenide:$allureVersion",
-            "io.appium:java-client:8.3.0",
-            "io.rest-assured:rest-assured:$restAssuredVersion",
-            "org.junit.jupiter:junit-jupiter:$junitVersion",
-            "org.slf4j:slf4j-simple:$slf4jVersion",
-            "org.aeonbits.owner:owner:$ownerVersion"
-    )
+    testImplementation "org.aspectj:aspectjweaver:$aspectjWeaverVersion"
+    testImplementation "com.codeborne:selenide:$selenideVersion"
+    testImplementation "io.qameta.allure:allure-selenide:$allureVersion"
+    testImplementation "io.appium:java-client:8.3.0"
+    testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+    testImplementation "org.slf4j:slf4j-simple:$slf4jVersion"
+    testImplementation "org.aeonbits.owner:owner:$ownerVersion"
+    testImplementation "org.assertj:assertj-core:3.24.2"
 }
 
 tasks.withType(Test) {
