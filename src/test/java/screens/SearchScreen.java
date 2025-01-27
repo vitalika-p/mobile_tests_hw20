@@ -13,9 +13,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SearchScreen {
     private final SelenideElement searchCard = $(accessibilityId("Search Wikipedia"));
-    private final SelenideElement searchBar = $(id("org.wikipedia.alpha:id/search_src_text"));
-    private final ElementsCollection searchKeyWords = $$(id("org.wikipedia.alpha:id/page_list_item_title"));
-    public final SelenideElement clearButton = $(id("org.wikipedia.alpha:id/search_close_btn"));
+    private final SelenideElement searchKeyWords = $(id("org.wikipedia.alpha:id/search_src_text"));
+    private final ElementsCollection searchResults = $$(id("org.wikipedia.alpha:id/page_list_item_title"));
 
 
     @Step("Открыть поиск")
@@ -23,32 +22,28 @@ public class SearchScreen {
         searchCard.click();
         return this;
     }
+
     @Step("Ввести валидный поисковый запрос")
     public SearchScreen enterValidQuery(String query) {
-        searchBar.sendKeys(query);
+        searchKeyWords.sendKeys(query);
         return this;
     }
 
-    @Step("Открыть первый результат")
-    public SearchScreen openFirstSearchResult() {
-        searchKeyWords.first().click();
-        return this;
+    @Step("Получить текст из поля поиска")
+    public String getSearchInputText() {
+        return searchKeyWords.getText();
     }
 
-    @Step("Ввести невалидный поисковый запрос")
-    public SearchScreen enterInvalidQuery(String query) {
-        searchBar.sendKeys(query);
-        return this;
+    @Step("Проверить, что поле поиска содержит текст")
+    public void verifySearchFieldContainsText(String expectedText) {
+        String text = getSearchInputText();
+        assertThat(text).isEqualTo(expectedText);
     }
 
-    @Step("Нажать на крестик для очистки поля поиска")
-    public SearchScreen clearSearchField() {
-        clearButton.click();
-        return this;
-    }
 
-    @Step("Проверить, что поле поиска пустое")
-    public boolean isSearchFieldEmpty() {
-        return searchBar.getText().isEmpty();
+    @Step("Проверка наличия результатов")
+    public SearchScreen checkResultsQuantity() {
+        searchResults.shouldHave(sizeGreaterThan(0));
+        return this;
     }
 }
