@@ -12,23 +12,26 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SearchTests extends TestBase {
     screens.SearchScreen searchScreen = new SearchScreen();
+    screens.SearchResultScreen SearchResultScreen = new SearchResultScreen();
 
     @Test
     @Tag("android")
-    @DisplayName("Открытие первого валидного результата")
+    @DisplayName("Вывод результатов поиска")
     void successfulSearchTest() {
         searchScreen.openSearchPage();
-        searchScreen.enterValidQuery("QA Engineer");
-        searchScreen.openFirstSearchResult();
+        searchScreen.enterValidQuery("Pushkin");
+        searchScreen.verifySearchFieldContainsText("Pushkin");
+        searchScreen.checkResultsQuantity();
     }
 
     @Test
     @Tag("android")
-    @DisplayName("Очистка поля ввода после тапа на крестик")
+    @DisplayName("Открыть первый результат и проверить текст ошибки")
     void clearSearchFieldTest() {
         searchScreen.openSearchPage();
-        searchScreen.enterInvalidQuery("!@#$%^&*");
-        searchScreen.clearSearchField();
-        searchScreen.isSearchFieldEmpty();
+        searchScreen.enterValidQuery("Pushkin");
+        searchScreen.verifySearchFieldContainsText("Pushkin");
+        SearchResultScreen.openFirstSearchResult();
+        SearchResultScreen.verifyErrorPageWithText("An error occurred");
     }
 }
