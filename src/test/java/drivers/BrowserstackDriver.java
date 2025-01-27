@@ -24,7 +24,6 @@ public class BrowserstackDriver implements WebDriverProvider {
     private DesiredCapabilities commonCapabilities() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("project", config.project());
-
         return capabilities;
     }
 

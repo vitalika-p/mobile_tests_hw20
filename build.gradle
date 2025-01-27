@@ -39,6 +39,7 @@ dependencies {
     testImplementation "org.slf4j:slf4j-simple:$slf4jVersion"
     testImplementation "org.aeonbits.owner:owner:$ownerVersion"
     testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation 'commons-io:commons-io:2.11.0'
 }
 
 tasks.withType(Test) {
