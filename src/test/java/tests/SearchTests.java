@@ -3,6 +3,7 @@ package tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import screens.ArticleScreen;
 import screens.SearchScreen;
 import screens.SearchResultScreen;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SearchTests extends TestBase {
     screens.SearchScreen searchScreen = new SearchScreen();
     screens.SearchResultScreen SearchResultScreen = new SearchResultScreen();
+    screens.ArticleScreen articleScreen = new ArticleScreen();
 
     @Test
     @Tag("android")
@@ -30,6 +32,6 @@ public class SearchTests extends TestBase {
         searchScreen.enterValidQuery("Pushkin");
         searchScreen.verifySearchFieldContainsText("Pushkin");
         SearchResultScreen.openFirstSearchResult();
-        SearchResultScreen.verifyErrorPageWithText("An error occurred");
+        articleScreen.verifyErrorPageWithText("An error occurred");
     }
 }

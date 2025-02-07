@@ -7,6 +7,10 @@ repositories {
     mavenCentral()
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 def aspectjWeaverVersion = "1.9.22",
     selenideVersion = "6.13.0",
     restAssuredVersion = "5.3.0",
