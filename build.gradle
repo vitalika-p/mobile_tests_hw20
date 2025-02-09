@@ -42,6 +42,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
     testImplementation "org.slf4j:slf4j-simple:$slf4jVersion"
     testImplementation "org.aeonbits.owner:owner:$ownerVersion"
+    testImplementation "commons-io:commons-io:2.11.0"
     testImplementation 'org.assertj:assertj-core:3.24.2'
 }
 

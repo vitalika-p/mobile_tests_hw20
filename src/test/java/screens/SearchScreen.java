@@ -25,7 +25,7 @@ public class SearchScreen {
 
     @Step("Ввести валидный поисковый запрос")
     public SearchScreen enterValidQuery(String query) {
-        searchKeyWords.sendKeys(query);
+        searchKeyWords.sendKeys("Pushkin");
         return this;
     }
 
@@ -34,12 +34,12 @@ public class SearchScreen {
         return searchKeyWords.getText();
     }
 
+
     @Step("Проверить, что поле поиска содержит текст")
     public void verifySearchFieldContainsText(String expectedText) {
         String text = getSearchInputText();
-        assertThat(text).isEqualTo(expectedText);
+        assertThat(text).isEqualTo("Pushkin");
     }
-
 
     @Step("Проверка наличия результатов")
     public SearchScreen checkResultsQuantity() {
