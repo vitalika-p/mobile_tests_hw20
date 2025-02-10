@@ -16,11 +16,13 @@ public class ArticleScreen {
 
 
     @Step("Проверить текст ошибки на экране статьи")
-    public void verifyErrorPageWithText(String expectedErrorText) {
+    public void verifyErrorPageWithText() {
         errorText.shouldBe(Condition.visible);
         String actualErrorText = errorText.getText();
-        assertThat(actualErrorText).isEqualTo("An error occurred");
+        String expectedErrorText = "An error occurred";
+        assertThat(actualErrorText).isEqualTo(expectedErrorText);
     }
+
 
     @Step("Проверить название статьи {0}")
     public ArticleScreen checkArticleTitle(String expectedTitle) {

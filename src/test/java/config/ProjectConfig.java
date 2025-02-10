@@ -1,28 +1,9 @@
 package config;
 
-import org.aeonbits.owner.Config;
+import org.aeonbits.owner.ConfigFactory;
 
-@Config.LoadPolicy(Config.LoadType.FIRST)
-@Config.Sources({
-    "classpath:remote.properties"
-})
-public interface ProjectConfig extends Config {
-    @Key("appUrl")
-    String appUrl();
-
-    @Key("project")
-    String project();
-
-    @Key("login")
-    String login();
-
-    @Key("password")
-    String password();
-
-    @Key("android.deviceModel")
-    String deviceModel();
-
-    @Key("android.osVersion")
-    String osVersion();
-
+public class ProjectConfig {
+    public static AuthConfig authConfig = ConfigFactory.create(AuthConfig.class, System.getProperties());
+    public static AppConfig appConfig = ConfigFactory.create(AppConfig.class, System.getProperties());
+    public static DeviceConfig deviceConfig = ConfigFactory.create(DeviceConfig.class, System.getProperties());
 }

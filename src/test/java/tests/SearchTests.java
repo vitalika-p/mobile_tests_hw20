@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import screens.ArticleScreen;
 import screens.OnboardingScreen;
-import screens.SearchScreen;
-import screens.SearchResultScreen;
+
 
 import static com.codeborne.selenide.Selenide.back;
 
@@ -26,20 +25,20 @@ public class SearchTests extends TestBase {
         searchScreen.checkResultsQuantity();
     }
 
-@Disabled
+    @Disabled
     @Test
     @Tag("android")
     @DisplayName("Открыть первый результат и проверить текст ошибки")
     void verifyErrorTextTest() {
-        back();
         searchScreen.openSearchPage();
         searchScreen.enterValidQuery("");
         searchScreen.verifySearchFieldContainsText("");
         searchResultScreen.openFirstSearchResult();
-        articleScreen.verifyErrorPageWithText("");
+        articleScreen.verifyErrorPageWithText();
     }
 
 
+    @Disabled
     @Test
     @Tag("android")
     @DisplayName("Открыть первый результат и проверить название статьи")

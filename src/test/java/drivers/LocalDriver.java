@@ -13,12 +13,12 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static config.LocalProjectConfig.config;
-import static io.appium.java_client.remote.AutomationName.ANDROID_UIAUTOMATOR2;
-import static io.appium.java_client.remote.MobilePlatform.ANDROID;
+import static config.LocalProjectConfig.appConfig;
+import static config.LocalProjectConfig.deviceConfig;
 import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
 public class LocalDriver implements WebDriverProvider {
+
     public static URL getAppiumServerUrl() {
         try {
             return new URL("http://localhost:4723/wd/hub");
@@ -31,22 +31,19 @@ public class LocalDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         UiAutomator2Options options = new UiAutomator2Options();
-
-        options.setAutomationName(ANDROID_UIAUTOMATOR2)
-                .setPlatformName(ANDROID)
-                .setPlatformVersion(config.osVersion())
-                .setDeviceName(config.device())
+        options.setAutomationName("UiAutomator2")
+                .setPlatformVersion(deviceConfig.osVersion())
+                .setDeviceName(deviceConfig.deviceModel())
                 .setApp(getAppPath())
-                .setAppPackage(config.appPackage())
-                .setAppActivity(config.appActivity());
+                .setAppPackage(appConfig.appPackage())
+                .setAppActivity(appConfig.appActivity());
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }
 
     private String getAppPath() {
         String appVersion = "app-alpha-universal-release.apk";
-        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia" +
-                "/releases/download/latest/" + appVersion;
+        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/releases/download/latest/" + appVersion;
         String appPath = "src/test/resources/apps/" + appVersion;
 
         File app = new File(appPath);

@@ -1,14 +1,25 @@
 plugins {
     id 'java-library'
-    id 'io.qameta.allure' version '2.11.2'
+    id 'java'
+    id ('io.qameta.allure') version '2.12.0'
+}
+
+allure {
+    report {
+        version.set("2.19.0")
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 { //название фреймворка
+                adapterVersion.set("2.29.0")
+            }
+        }
+    }
 }
 
 repositories {
     mavenCentral()
-}
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
 }
 
 def aspectjWeaverVersion = "1.9.22",
@@ -19,31 +30,26 @@ def aspectjWeaverVersion = "1.9.22",
     slf4jVersion = "2.0.7",
     ownerVersion = "1.0.4"
 
-allure {
-    report {
-        version.set(allureVersion)
-    }
-    adapter {
-        aspectjWeaver.set(true)
-        frameworks {
-            junit5 {
-                adapterVersion.set(allureVersion)
-            }
-        }
-    }
+
+
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
 }
 
 dependencies {
-    testImplementation "org.aspectj:aspectjweaver:$aspectjWeaverVersion"
-    testImplementation "com.codeborne:selenide:$selenideVersion"
-    testImplementation "io.qameta.allure:allure-selenide:$allureVersion"
-    testImplementation "io.appium:java-client:8.3.0"
-    testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
-    testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
-    testImplementation "org.slf4j:slf4j-simple:$slf4jVersion"
-    testImplementation "org.aeonbits.owner:owner:$ownerVersion"
-    testImplementation "commons-io:commons-io:2.11.0"
-    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation(
+            "org.aspectj:aspectjweaver:$aspectjWeaverVersion",
+            "com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "io.appium:java-client:8.3.0",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "commons-io:commons-io:2.18.0",
+            "org.assertj:assertj-core:3.24.2"
+    )
 }
 
 tasks.withType(Test) {
@@ -53,7 +59,7 @@ tasks.withType(Test) {
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
-            exceptionFormat "short"
+            exceptionFormat = "short"
         }
     }
 }
