@@ -38,7 +38,7 @@ public class SearchTests extends TestBase {
     }
 
 
-    @Disabled
+  
     @Test
     @Tag("android")
     @DisplayName("Открыть первый результат и проверить название статьи")
