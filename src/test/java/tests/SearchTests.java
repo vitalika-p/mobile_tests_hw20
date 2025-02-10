@@ -26,7 +26,7 @@ public class SearchTests extends TestBase {
         searchScreen.checkResultsQuantity();
     }
 
-
+@Disabled
     @Test
     @Tag("android")
     @DisplayName("Открыть первый результат и проверить текст ошибки")
@@ -39,7 +39,6 @@ public class SearchTests extends TestBase {
         articleScreen.verifyErrorPageWithText("");
     }
 
-@Disabled
     @Test
     @Tag("android")
     @DisplayName("Открыть первый результат и проверить название статьи")
