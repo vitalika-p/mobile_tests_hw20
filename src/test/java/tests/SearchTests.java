@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import screens.ArticleScreen;
 import screens.OnboardingScreen;
 
 
@@ -24,6 +23,7 @@ public class SearchTests extends TestBase {
         searchScreen.verifySearchFieldContainsText("");
         searchScreen.checkResultsQuantity();
     }
+    
 
     @Disabled
     @Test
@@ -41,7 +41,7 @@ public class SearchTests extends TestBase {
     @Disabled
     @Test
     @Tag("android")
-    @DisplayName("Открыть первый результат и проверить название статьи")
+    @DisplayName("Открытие первого результата и проверка названия статьи")
     void verifyArticleTitleTest() {
         back();
         searchScreen.openSearchPage();

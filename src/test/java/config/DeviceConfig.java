@@ -4,7 +4,7 @@ import org.aeonbits.owner.Config;
 
 @Config.Sources({
         "classpath:${deviceHost}.properties",
-        "classpath:remote.properties"
+        "classpath:browserstack.properties"
 })
 public interface DeviceConfig extends Config {
     @Key("deviceModel")
